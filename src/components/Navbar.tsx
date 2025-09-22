@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,12 +42,12 @@ const Navbar = () => {
   ];
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services", hasDropdown: true },
-    { name: "Blog", href: "#blog" },
-    { name: "Career", href: "#career" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services", hasDropdown: true },
+    { name: "Blog", href: "/blog" },
+    { name: "Career", href: "/career" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -60,7 +62,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#home" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="relative w-10 h-10">
                 <div className="absolute inset-0 bg-gradient-primary rounded-lg rotate-6"></div>
                 <div className="relative bg-white dark:bg-background rounded-lg p-2 flex items-center justify-center">
@@ -70,7 +72,7 @@ const Navbar = () => {
               <span className="font-montserrat font-bold text-xl text-foreground">
                 Global
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -90,6 +92,7 @@ const Navbar = () => {
                         <DropdownMenuItem
                           key={service}
                           className="cursor-pointer hover:bg-primary/10"
+                          onClick={() => navigate('/services')}
                         >
                           {service}
                         </DropdownMenuItem>
@@ -98,7 +101,7 @@ const Navbar = () => {
                   </DropdownMenu>
                 ) : (
                   <Button variant="nav" asChild>
-                    <a href={link.href}>{link.name}</a>
+                    <Link to={link.href}>{link.name}</Link>
                   </Button>
                 )}
               </div>
@@ -155,14 +158,14 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border/50">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="block py-2 px-4 text-foreground hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="mt-4 pt-4 border-t border-border/50">
               <Button variant="default" className="w-full">
