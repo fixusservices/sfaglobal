@@ -5,12 +5,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const About = () => {
-  const stats = [
-    { label: "Years of Experience", value: "10+" },
-    { label: "Successful Projects", value: "500+" },
-    { label: "Happy Clients", value: "200+" },
-    { label: "Team Members", value: "50+" },
-  ];
 
   const values = [
     {
@@ -37,24 +31,19 @@ const About = () => {
 
   const team = [
     {
-      name: "Rajesh Kumar",
-      role: "CEO & Founder",
+      name: "Fazil",
+      role: "CEO",
       image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
     },
     {
-      name: "Priya Sharma",
+      name: "Sathish",
       role: "CTO",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-    },
-    {
-      name: "Arjun Patel",
-      role: "Head of Development",
       image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
     },
     {
-      name: "Sneha Reddy",
-      role: "Head of Marketing",
-      image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop",
+      name: "Aravind",
+      role: "CFO",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
     },
   ];
 
@@ -70,8 +59,8 @@ const About = () => {
               About SFA Global
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Leading the digital transformation journey since 2014, we are a premier IT solutions provider
-              based in Coimbatore, serving clients globally with innovative technology solutions.
+              Leading the digital transformation journey with innovative technology solutions.
+              Based in Coimbatore, we serve clients globally with excellence and dedication.
             </p>
           </div>
         </div>
@@ -81,14 +70,30 @@ const About = () => {
       <section className="py-16 px-4 bg-card">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-muted-foreground">{stat.label}</div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                20+
               </div>
-            ))}
+              <div className="text-muted-foreground">Projects Delivered</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                30+
+              </div>
+              <div className="text-muted-foreground">Happy Clients</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                2+
+              </div>
+              <div className="text-muted-foreground">Years Experience</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                24/7
+              </div>
+              <div className="text-muted-foreground">Support Available</div>
+            </div>
           </div>
         </div>
       </section>
@@ -141,7 +146,7 @@ const About = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">
             Meet Our Leadership Team
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {team.map((member, index) => (
               <Card key={index} className="overflow-hidden hover-scale">
                 <img

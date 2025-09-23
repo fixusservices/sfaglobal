@@ -65,8 +65,9 @@ const Contact = () => {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Phone Numbers",
       details: [
-        "CTO: +91 9629463964",
+        "Main: +91 9629463964",
         "CEO: +91 9677755055",
+        "CTO: +91 9629463964",
         "CFO: +91 8883050283"
       ],
     },
@@ -185,6 +186,16 @@ const Contact = () => {
                   <Send className="mr-2 h-4 w-4" />
                   Send Message
                 </Button>
+                <Button 
+                  type="button" 
+                  variant="secondary" 
+                  size="lg"
+                  className="w-full"
+                  onClick={() => window.open('https://wa.me/919629463964', '_blank')}
+                >
+                  <Phone className="mr-2 h-4 w-4" />
+                  Contact on WhatsApp
+                </Button>
               </form>
             </Card>
 
@@ -238,18 +249,18 @@ const Contact = () => {
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">
             Find Us on the Map
           </h2>
-          <Card className="overflow-hidden">
-            <div className="w-full h-96 bg-muted flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
-                <p className="text-muted-foreground">
-                  Interactive map would be integrated here
-                </p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Coimbatore, Tamil Nadu, India
-                </p>
-              </div>
-            </div>
+          <Card className="overflow-hidden max-w-6xl mx-auto">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7913.983818126225!2d77.00201948826935!3d11.02375283635192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1758643004940!5m2!1sen!2sin" 
+              width="100%" 
+              height="450" 
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full"
+              title="SFA Global Location"
+            />
           </Card>
         </div>
       </section>
