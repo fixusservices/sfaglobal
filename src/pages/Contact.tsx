@@ -59,12 +59,16 @@ const Contact = () => {
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: "Our Location",
-      details: ["123 Tech Park, Avinashi Road", "Coimbatore, Tamil Nadu 641014", "India"],
+      details: ["Coimbatore, Tamil Nadu", "India"],
     },
     {
       icon: <Phone className="h-6 w-6 text-primary" />,
       title: "Phone Numbers",
-      details: ["+91 98765 43210", "+91 87654 32109", "1800-123-4567 (Toll Free)"],
+      details: [
+        "CTO: +91 9629463964",
+        "CEO: +91 9677755055",
+        "CFO: +91 8883050283"
+      ],
     },
     {
       icon: <Mail className="h-6 w-6 text-primary" />,
@@ -264,7 +268,7 @@ const Contact = () => {
               },
               {
                 question: "How can I request a quote?",
-                answer: "You can request a quote by filling out the contact form above or by calling us directly at +91 98765 43210.",
+                answer: "You can request a quote by filling out the contact form above or by contacting our team directly through the phone numbers provided.",
               },
               {
                 question: "Do you provide support after project completion?",

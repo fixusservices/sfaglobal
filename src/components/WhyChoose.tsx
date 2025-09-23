@@ -72,25 +72,6 @@ const WhyChoose = () => {
           ))}
         </div>
 
-        {/* Additional Stats */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-8 flex-wrap justify-center gap-y-4">
-            <div className="text-white">
-              <span className="font-bold text-2xl">10+</span>
-              <span className="ml-2 text-white/80">Years Experience</span>
-            </div>
-            <div className="w-px h-8 bg-white/30 hidden sm:block"></div>
-            <div className="text-white">
-              <span className="font-bold text-2xl">500+</span>
-              <span className="ml-2 text-white/80">Happy Clients</span>
-            </div>
-            <div className="w-px h-8 bg-white/30 hidden sm:block"></div>
-            <div className="text-white">
-              <span className="font-bold text-2xl">15+</span>
-              <span className="ml-2 text-white/80">Countries Served</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
