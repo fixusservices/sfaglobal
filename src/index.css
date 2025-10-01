@@ -144,7 +144,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Premium animations */
+/* Premium luxury animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -161,9 +161,29 @@ All colors MUST be HSL.
   }
 }
 
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+@keyframes digital-dissolve {
+  0% { 
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.9);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% { 
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: -200% center;
+  }
+  100% { 
+    background-position: 200% center;
+  }
 }
 
 @keyframes gradient-shift {
@@ -172,20 +192,28 @@ All colors MUST be HSL.
   100% { background-position: 0% 50%; }
 }
 
-@keyframes ripple {
+@keyframes ripple-light {
   0% {
-    transform: scale(1);
+    transform: scale(0);
     opacity: 1;
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(2.5);
     opacity: 0;
   }
 }
 
 @keyframes count-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    filter: blur(8px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 
 @keyframes particle-float {
@@ -193,6 +221,48 @@ All colors MUST be HSL.
   33% { transform: translate(30px, -30px) rotate(120deg); }
   66% { transform: translate(-20px, 20px) rotate(240deg); }
   100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes glide-right {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes liquid-flow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes cinematic-wipe {
+  0% { 
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    opacity: 0;
+  }
+  100% { 
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+@keyframes light-flash {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes border-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
 }
 
 .animate-float {
@@ -203,10 +273,14 @@ All colors MUST be HSL.
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-.animate-typewriter {
-  animation: typewriter 3s steps(40, end);
-  overflow: hidden;
-  white-space: nowrap;
+.animate-digital-dissolve {
+  animation: digital-dissolve 1.5s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, hsl(214 100% 50% / 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
 }
 
 .animate-gradient-shift {
@@ -214,16 +288,63 @@ All colors MUST be HSL.
   background-size: 200% 200%;
 }
 
-.animate-ripple {
-  animation: ripple 0.6s ease-out;
+.animate-ripple-light {
+  animation: ripple-light 0.8s ease-out;
 }
 
 .animate-count-up {
-  animation: count-up 0.6s ease-out;
+  animation: count-up 1s ease-out;
 }
 
 .animate-particle {
   animation: particle-float 20s ease-in-out infinite;
+}
+
+.animate-glide {
+  animation: glide-right 2s ease-in-out infinite;
+}
+
+.animate-liquid-flow {
+  animation: liquid-flow 20s linear infinite;
+}
+
+.animate-cinematic {
+  animation: cinematic-wipe 0.6s ease-out;
+}
+
+.animate-light-flash {
+  animation: light-flash 0.3s ease-out;
+}
+
+/* Luxury hover effects */
+.luxury-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(214 100% 50% / 0.4), transparent);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.luxury-glow:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+/* Animated borders */
+.border-pulse {
+  background: linear-gradient(90deg, hsl(214 100% 50%), hsl(152 70% 50%), hsl(214 100% 50%));
+  background-size: 200% 100%;
+  animation: border-shimmer 3s linear infinite;
 }
 
 /* Custom scrollbar */
