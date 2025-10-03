@@ -1,10 +1,13 @@
 import { Code2, Database, Cloud, Cpu, Layers, TrendingUp, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const Services = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   
   const services = [
     {
@@ -52,23 +55,35 @@ const Services = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Premium Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl mb-4 bg-gradient-primary bg-clip-text text-transparent">
             Our Expert Services
           </h2>
           <p className="text-lg text-muted-foreground">
             Comprehensive IT solutions designed to accelerate your business growth and digital transformation
           </p>
-        </div>
+        </motion.div>
 
         {/* Luxury Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
               className="group relative"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: "easeOut"
+              }}
             >
               {/* Glowing background effect */}
               <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-all duration-500 scale-95 group-hover:scale-100`} />
@@ -76,17 +91,28 @@ const Services = () => {
               <Card className="relative h-full bg-card/50 backdrop-blur-sm border-border/50 group-hover:border-primary/50 transition-all duration-500 hover:shadow-card overflow-hidden">
                 {/* Ripple effect on hover */}
                 {hoveredIndex === index && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 animate-ripple-light pointer-events-none" />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 pointer-events-none"
+                    initial={{ scale: 0, opacity: 0.5 }}
+                    animate={{ scale: 2, opacity: 0 }}
+                    transition={{ duration: 0.6 }}
+                  />
                 )}
                 
                 <CardContent className="p-8">
                   {/* Icon with luxury glow effect */}
-                  <div className="relative mb-6">
+                  <motion.div 
+                    className="relative mb-6"
+                    whileHover={{ 
+                      rotate: [0, -10, 10, -10, 0],
+                      transition: { duration: 0.5 }
+                    }}
+                  >
                     <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500`} />
                     <div className={`relative inline-flex p-4 rounded-xl bg-gradient-to-br ${service.gradient} group-hover:scale-110 transition-all duration-500`}>
                       <service.icon className="h-8 w-8 text-white" />
                     </div>
-                  </div>
+                  </motion.div>
                   
                   {/* Title with hover effect */}
                   <h3 className="font-montserrat font-semibold text-xl text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
@@ -101,11 +127,16 @@ const Services = () => {
                   {/* Luxury Learn More button */}
                   <Button variant="link" className="p-0 h-auto font-semibold text-primary group-hover:text-accent transition-all duration-300">
                     <span className="mr-2">Learn More</span>
-                    <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-2 animate-glide" />
+                    <motion.div
+                      animate={{ x: hoveredIndex === index ? 8 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </motion.div>
                   </Button>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
 

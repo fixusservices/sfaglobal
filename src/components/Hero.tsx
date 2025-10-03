@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const statsRef = useRef(null);
+  const isInView = useInView(statsRef, { once: true });
+  const controls = useAnimation();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
@@ -71,28 +81,49 @@ const Hero = () => {
           </div>
 
           {/* Luxury Stats with count animation and light flash */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+          <motion.div 
+            ref={statsRef}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto px-4"
+          >
             {[
-              { number: "20+", label: "Projects Delivered", delay: 1000 },
-              { number: "30+", label: "Happy Clients", delay: 1200 },
-              { number: "2+", label: "Years Experience", delay: 1400 },
-              { number: "24/7", label: "Support Available", delay: 1600 }
+              { number: 20, suffix: "+", label: "Projects Delivered", delay: 0 },
+              { number: 30, suffix: "+", label: "Happy Clients", delay: 0.2 },
+              { number: 2, suffix: "+", label: "Years Experience", delay: 0.4 },
+              { number: 247, suffix: "", label: "Support Available", delay: 0.6, displayAs: "24/7" }
             ].map((stat, index) => (
-              <div
+              <motion.div
                 key={index}
-                className={`group relative transition-all duration-1000 ${isVisible ? 'animate-count-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${stat.delay}ms` }}
+                className="group relative"
+                initial="hidden"
+                animate={controls}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 }
+                }}
+                transition={{ duration: 0.6, delay: stat.delay }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                    {stat.number}
-                  </div>
+                  <motion.div 
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: stat.delay + 0.3,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                  >
+                    {stat.displayAs || (
+                      <CountUp end={stat.number} suffix={stat.suffix} duration={2} delay={stat.delay} />
+                    )}
+                  </motion.div>
                   <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">{stat.label}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Luxury scroll indicator */}
@@ -105,6 +136,34 @@ const Hero = () => {
       </div>
     </section>
   );
+};
+
+// Counter component with animation
+const CountUp = ({ end, suffix, duration, delay }: { end: number; suffix: string; duration: number; delay: number }) => {
+  const [count, setCount] = useState(0);
+  const nodeRef = useRef(null);
+  const isInView = useInView(nodeRef, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const timeout = setTimeout(() => {
+      let startTime: number;
+      const step = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+        setCount(Math.floor(progress * end));
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }, delay * 1000);
+
+    return () => clearTimeout(timeout);
+  }, [isInView, end, duration, delay]);
+
+  return <span ref={nodeRef}>{count}{suffix}</span>;
 };
 
 export default Hero;

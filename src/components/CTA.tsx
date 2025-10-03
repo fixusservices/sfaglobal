@@ -1,6 +1,7 @@
 import { ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const CTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -55,28 +56,54 @@ const CTA = () => {
 
           {/* Luxury CTA Buttons with dynamic borders */}
           <div className={`flex flex-col sm:flex-row gap-5 justify-center transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Button 
-              size="lg" 
-              className="group relative overflow-hidden bg-gradient-primary hover:shadow-glow transition-all duration-300 text-white font-semibold px-10 py-7 text-lg"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">Get Started Today</span>
-              <ArrowRight className="relative z-10 ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            </Button>
+              <Button 
+                size="lg" 
+                className="group relative overflow-hidden bg-gradient-primary hover:shadow-glow transition-all duration-300 text-white font-semibold px-10 py-7 text-lg"
+              >
+                <motion.span 
+                  className="relative z-10"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 0px rgba(255,255,255,0)",
+                      "0 0 20px rgba(255,255,255,0.3)",
+                      "0 0 0px rgba(255,255,255,0)"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity,
+                    repeatType: "loop"
+                  }}
+                >
+                  Get Started Today
+                </motion.span>
+                <ArrowRight className="relative z-10 ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
+                {/* Shimmer effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </Button>
+            </motion.div>
             
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="group relative border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm font-semibold px-10 py-7 text-lg overflow-hidden"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Calendar className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-              <span>Schedule a Consultation</span>
-              {/* Ripple effect on hover */}
-              <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer" />
-              </div>
-            </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="group relative border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm font-semibold px-10 py-7 text-lg overflow-hidden"
+              >
+                <Calendar className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                <span>Schedule a Consultation</span>
+                {/* Ripple effect on hover */}
+                <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer" />
+                </div>
+              </Button>
+            </motion.div>
           </div>
 
           {/* Luxury Contact Info with glow effect */}

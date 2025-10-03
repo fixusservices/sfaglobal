@@ -1,6 +1,11 @@
 import { Zap, Users, Trophy, HeadphonesIcon } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const WhyChoose = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const features = [
     {
       icon: Zap,
@@ -38,29 +43,59 @@ const WhyChoose = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4">
             Why Choose SFA Global
           </h2>
           <p className="text-lg text-white/90">
             We deliver excellence through innovation and dedication
           </p>
-        </div>
+        </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="text-center group hover:scale-105 transition-transform duration-300"
+              className="text-center group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.15,
+                ease: "easeOut"
+              }}
+              whileHover={{ scale: 1.05 }}
             >
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors">
-                <div className="inline-flex p-4 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+                <motion.div 
+                  className="inline-flex p-4 rounded-full bg-white/20 mb-4"
+                  whileHover={{ 
+                    rotate: [0, -15, 15, -15, 0],
+                    scale: 1.1
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
                   <feature.icon className="h-8 w-8 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-white mb-2">
+                </motion.div>
+                <motion.div 
+                  className="text-3xl font-bold text-white mb-2"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : { scale: 0 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.15 + 0.3,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
                   {feature.stat}
-                </div>
+                </motion.div>
                 <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
                   {feature.title}
                 </h3>
@@ -68,7 +103,7 @@ const WhyChoose = () => {
                   {feature.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
