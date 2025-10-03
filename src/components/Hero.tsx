@@ -41,14 +41,8 @@ const Hero = () => {
 
       <div className="container relative z-10 px-4 mx-auto text-center">
         <div className="max-w-5xl mx-auto">
-          {/* Premium badge with luxury glow */}
-          <div className={`inline-flex items-center px-6 py-3 mb-10 text-sm font-semibold bg-gradient-to-r from-primary/10 to-accent/10 text-primary rounded-full backdrop-blur-sm border border-primary/20 shadow-glow transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <span className="mr-2 animate-light-flash">⚡</span>
-            Leading IT Solutions Provider
-          </div>
-
           {/* Main headline with digital dissolve effect */}
-          <h1 className={`text-5xl md:text-7xl font-bold mb-8 transition-all duration-1500 ${isVisible ? 'animate-digital-dissolve' : 'opacity-0'}`}>
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 transition-all duration-1500 ${isVisible ? 'animate-digital-dissolve' : 'opacity-0'}`}>
             <span className="bg-gradient-glow bg-clip-text text-transparent animate-gradient-shift bg-[length:200%_auto]">
               Transform Your Business with Cutting-Edge IT Solutions
             </span>
@@ -56,28 +50,28 @@ const Hero = () => {
 
           {/* Luxury subheadline with shimmer */}
           <div className={`relative transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-xl md:text-2xl text-foreground/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
               We are a premier IT consulting and software development company based in Coimbatore, serving clients globally with innovative technology solutions.
             </p>
             <div className="absolute inset-0 animate-shimmer pointer-events-none" />
           </div>
 
           {/* Luxury CTA Buttons with dynamic borders */}
-          <div className={`flex flex-col sm:flex-row gap-5 justify-center mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <Button size="lg" className="group relative overflow-hidden bg-gradient-primary hover:shadow-glow transition-all duration-300 text-white font-semibold px-10 py-6 text-lg border-0">
+          <div className={`flex flex-col sm:flex-row gap-4 md:gap-5 justify-center mb-12 md:mb-16 px-4 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <Button size="lg" className="group relative overflow-hidden bg-gradient-primary hover:shadow-glow transition-all duration-300 text-white font-semibold px-8 md:px-10 py-5 md:py-6 text-base md:text-lg border-0 w-full sm:w-auto">
               <span className="relative z-10">Get Started Today</span>
-              <ArrowRight className="relative z-10 ml-2 h-5 w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
+              <ArrowRight className="relative z-10 ml-2 h-4 md:h-5 w-4 md:w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-border-shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
-            <Button size="lg" variant="outline" className="group luxury-glow border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm font-semibold px-10 py-6 text-lg">
-              <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
+            <Button size="lg" variant="outline" className="group luxury-glow border-2 border-primary/50 hover:border-primary hover:bg-primary/10 backdrop-blur-sm font-semibold px-8 md:px-10 py-5 md:py-6 text-base md:text-lg w-full sm:w-auto">
+              <Play className="mr-2 h-4 md:h-5 w-4 md:w-5 group-hover:animate-pulse" />
               Watch Demo
               <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-primary/10 to-transparent animate-shimmer" />
             </Button>
           </div>
 
           {/* Luxury Stats with count animation and light flash */}
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
             {[
               { number: "20+", label: "Projects Delivered", delay: 1000 },
               { number: "30+", label: "Happy Clients", delay: 1200 },
@@ -91,10 +85,10 @@ const Hero = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative">
-                  <div className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                     {stat.number}
                   </div>
-                  <div className="text-muted-foreground font-medium">{stat.label}</div>
+                  <div className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium">{stat.label}</div>
                 </div>
               </div>
             ))}
