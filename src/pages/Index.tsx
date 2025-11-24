@@ -8,20 +8,41 @@ import Testimonials from "@/components/Testimonials";
 import TrustedCompanies from "@/components/TrustedCompanies";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import HorizontalScrollLayout, { HorizontalSection } from "@/components/HorizontalScrollLayout";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
-      <Hero />
-      <Services />
-      <WhyChoose />
-      <Industries />
-      <Testimonials />
-      <TrustedCompanies />
-      <Partners />
-      <CTA />
-      <Footer />
+      <HorizontalScrollLayout>
+        <HorizontalSection allowScroll={false}>
+          <Hero />
+        </HorizontalSection>
+        <HorizontalSection>
+          <Services />
+        </HorizontalSection>
+        <HorizontalSection>
+          <WhyChoose />
+        </HorizontalSection>
+        <HorizontalSection>
+          <Industries />
+        </HorizontalSection>
+        <HorizontalSection>
+          <Testimonials />
+        </HorizontalSection>
+        <HorizontalSection>
+          <TrustedCompanies />
+        </HorizontalSection>
+        <HorizontalSection>
+          <Partners />
+        </HorizontalSection>
+        <HorizontalSection>
+          <CTA />
+        </HorizontalSection>
+        <HorizontalSection>
+          <Footer />
+        </HorizontalSection>
+      </HorizontalScrollLayout>
     </div>
   );
 };
