@@ -124,16 +124,21 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+
   body {
     @apply bg-background text-foreground font-roboto;
+    overflow-y: hidden;
+    overflow-x: auto;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-montserrat;
-  }
-  
-  html {
-    scroll-behavior: smooth;
   }
 }
 
